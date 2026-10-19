@@ -1,84 +1,114 @@
-<!doctype html>
-<html lang="en">
+
+<!DOCTYPE html>
+<html lang="fr">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0b0812">
-<title>MY fav plyliste</title>
+<meta name="theme-color" content="#080808">
+<title>MY FAV PLAYLISTE</title>
 <style>
-:root{--bg:#0b0812;--panel:#151020;--panel2:#1c152a;--purple:#a855f7;--pink:#d8b4fe;--text:#f7f2ff;--muted:#a99bb9;--line:#332344}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#25113b 0%,var(--bg) 48%);color:var(--text);font:16px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh}
-.wrap{max-width:850px;margin:auto;padding:28px 16px 60px}.top{display:flex;align-items:center;justify-content:space-between;gap:14px}.logo{display:flex;align-items:center;gap:12px}.disc{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#8b5cf6,#ec4899);font-size:24px;box-shadow:0 0 28px #a855f744}
-h1{font-size:clamp(1.45rem,5vw,2.2rem);letter-spacing:.04em;margin:0;line-height:1.1} .sub{color:var(--muted);font-size:.9rem;margin-top:5px}.tag{border:1px solid var(--line);border-radius:999px;padding:7px 10px;color:var(--pink);font-size:.75rem;white-space:nowrap}
-.hero{padding:36px 0 24px}.eyebrow{color:var(--pink);letter-spacing:.22em;text-transform:uppercase;font-size:.72rem}.hero h2{font-size:clamp(2rem,8vw,3.5rem);line-height:1.02;margin:10px 0}.hero p{color:var(--muted);max-width:520px;margin:0}
-.panel{background:#151020dd;border:1px solid var(--line);border-radius:20px;padding:18px;margin:18px 0;box-shadow:0 16px 50px #0003}.panel h3{margin:0 0 14px;font-size:1.05rem}
-.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}input,select,button{font:inherit}input,select{width:100%;min-width:0;background:#0f0b17;color:var(--text);border:1px solid #443052;border-radius:11px;padding:12px;outline:none}input:focus,select:focus{border-color:var(--purple)}.wide{grid-column:1/-1}.btn{border:0;border-radius:11px;padding:12px 16px;background:linear-gradient(110deg,#9333ea,#c026d3);color:white;font-weight:700;cursor:pointer}.btn:active{transform:scale(.99)}.btn.secondary{background:#251a35;border:1px solid var(--line);color:var(--pink)}.hint{color:var(--muted);font-size:.8rem;margin:10px 0 0}
-.listhead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:28px 0 12px}.listhead h3{margin:0;font-size:1.15rem}.count{color:var(--muted);font-size:.82rem}
-.songs{display:grid;gap:12px}.song{display:flex;gap:14px;align-items:center;padding:14px;border:1px solid var(--line);background:linear-gradient(130deg,#171020,#100c18);border-radius:16px;min-width:0}.cover{width:58px;height:58px;flex-shrink:0;border-radius:13px;background:linear-gradient(135deg,#4c1d95,#86198f 55%,#111827);display:grid;place-items:center;font-size:24px}.songinfo{min-width:0;flex:1}.songtitle{font-weight:750;overflow-wrap:anywhere}.artist{color:var(--muted);font-size:.88rem;overflow-wrap:anywhere}.platform{display:inline-block;margin-top:5px;color:var(--pink);font-size:.72rem;border:1px solid #4c2b67;border-radius:999px;padding:2px 8px}.actions{display:flex;gap:8px;align-items:center}.iconbtn{background:#241a32;border:1px solid #443052;color:var(--pink);border-radius:10px;padding:9px 11px;cursor:pointer}.empty{text-align:center;padding:35px 16px;color:var(--muted);border:1px dashed #443052;border-radius:16px}.empty b{display:block;color:var(--text);margin-bottom:5px}
-footer{text-align:center;color:#81728e;font-size:.8rem;margin-top:35px}a{color:inherit}
-@media(max-width:540px){.wrap{padding:22px 13px 40px}.tag{display:none}.formgrid{grid-template-columns:1fr}.wide{grid-column:auto}.song{gap:10px;padding:11px}.cover{width:48px;height:48px}.actions{flex-direction:column}.iconbtn{padding:7px 9px}.panel{padding:14px}}
+*{box-sizing:border-box}
+body{margin:0;background:#080808;color:#fff;font-family:Arial,sans-serif}
+header{text-align:center;padding:45px 15px 30px;background:radial-gradient(ellipse at top,#45101b,#080808 72%);border-bottom:1px solid #292929}
+.logo{font-size:clamp(32px,8vw,52px);font-weight:900;letter-spacing:3px}
+.red{color:#ff1744}
+.subtitle{margin-top:12px;color:#999;font-size:10px;letter-spacing:4px}
+.status{display:inline-block;margin-top:20px;padding:8px 13px;border:1px solid #591522;border-radius:30px;color:#ff647e;font-size:10px;letter-spacing:2px}
+main{max-width:1050px;margin:auto;padding:20px 15px 50px}
+.intro{padding:15px 0 25px;color:#aaa;line-height:1.8;font-size:14px}
+h2{font-size:17px;letter-spacing:2px;border-left:3px solid #ff1744;padding-left:12px;margin:28px 0 17px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.card{display:block;min-width:0;overflow:hidden;background:#151515;border:1px solid #292929;border-radius:8px;color:#fff;text-decoration:none}
+.card:hover{border-color:#ff1744}
+.thumb{position:relative;aspect-ratio:16/9;background:#222}
+.thumb img{display:block;width:100%;height:100%;object-fit:cover}
+.play{position:absolute;inset:0;display:grid;place-items:center;font-size:27px;background:#0003}
+.info{padding:11px}
+.number{font-size:10px;color:#ff1744;letter-spacing:2px;margin-bottom:7px}
+.name{font-size:13px;font-weight:bold;line-height:1.5;overflow-wrap:anywhere}
+.note{font-size:10px;color:#888;margin-top:6px}
+.playlist{padding:18px 12px;background:linear-gradient(135deg,#291018,#141414)}
+.playlist-icon{font-size:25px;margin-bottom:12px}
+footer{text-align:center;border-top:1px solid #222;padding:25px 10px;color:#777;font-size:10px;letter-spacing:2px}
+@media(min-width:600px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(min-width:850px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header class="top">
-    <div class="logo"><div class="disc">♫</div><div><h1>MY fav plyliste</h1><div class="sub">a little piece of my world.</div></div></div>
-    <div class="tag">PERSONAL MUSIC SPACE</div>
-  </header>
-  <section class="hero">
-    <div class="eyebrow">MY SOUNDTRACK · MY RULES</div>
-    <h2>Some songs<br>say it better.</h2>
-    <p>The tracks I keep close. Pick a song, press play, and stay a while.</p>
-  </section>
-
-  <section class="panel" id="manage">
-    <h3>＋ Add a favourite</h3>
-    <form id="songForm" class="formgrid">
-      <input id="title" placeholder="Song title *" required maxlength="120">
-      <input id="artist" placeholder="Artist (optional)" maxlength="120">
-      <select id="platform"><option value="Spotify">Spotify</option><option value="YouTube">YouTube</option><option value="Other">Other link</option></select>
-      <input id="url" type="url" placeholder="Paste song URL *" required class="wide">
-      <button class="btn wide" type="submit">Add to my playlist</button>
-    </form>
-    <p class="hint">Your list is saved in this browser on this device. Spotify/YouTube opens the official track; this starter version doesn't upload or host music files.</p>
-  </section>
-
-  <div class="listhead"><h3>♡ My favourites</h3><span class="count" id="count">0 songs</span></div>
-  <div id="songs" class="songs"></div>
-  <footer>MADE FOR YOUR MOOD · MY fav plyliste</footer>
-</div>
-<script>
-const KEY='myFavPlylisteSongs_v1';
-const starter=[];
-let songs=[];
-try { songs=JSON.parse(localStorage.getItem(KEY)||'[]'); if(!Array.isArray(songs)) songs=[]; } catch(e){songs=[]}
-const $=id=>document.getElementById(id);
-function save(){try{localStorage.setItem(KEY,JSON.stringify(songs));}catch(e){alert('Browser storage is unavailable. Your changes may not persist.')} render();}
-function validUrl(value){try{const u=new URL(value);return u.protocol==='https:'||u.protocol==='http:';}catch(e){return false;}}
-function render(){
- $('count').textContent=songs.length+' song'+(songs.length===1?'':'s');
- const root=$('songs'); root.innerHTML='';
- if(!songs.length){root.innerHTML='<div class="empty"><b>Your playlist starts here.</b>Add your first favourite above.<br>Paste a Spotify or YouTube song link.</div>';return;}
- songs.forEach((s,i)=>{
-  const el=document.createElement('article');el.className='song';
-  const cover=document.createElement('div');cover.className='cover';cover.textContent='♫';
-  const info=document.createElement('div');info.className='songinfo';
-  const title=document.createElement('div');title.className='songtitle';title.textContent=s.title;
-  const artist=document.createElement('div');artist.className='artist';artist.textContent=s.artist||'Unknown artist';
-  const plat=document.createElement('span');plat.className='platform';plat.textContent=s.platform;
-  info.append(title,artist,plat);
-  const actions=document.createElement('div');actions.className='actions';
-  const open=document.createElement('button');open.className='iconbtn';open.textContent='▶ Play';open.type='button';open.addEventListener('click',()=>window.open(s.url,'_blank','noopener,noreferrer'));
-  const del=document.createElement('button');del.className='iconbtn';del.textContent='✕';del.type='button';del.setAttribute('aria-label','Delete '+s.title);del.addEventListener('click',()=>{if(confirm('Delete “'+s.title+'” from this browser?')){songs.splice(i,1);save();}});
-  actions.append(open,del);el.append(cover,info,actions);root.append(el);
- });
-}
-$('songForm').addEventListener('submit',e=>{
- e.preventDefault();const title=$('title').value.trim(),artist=$('artist').value.trim(),platform=$('platform').value,url=$('url').value.trim();
- if(!title||!url)return;if(!validUrl(url)){alert('Please paste a valid http/https link.');return;}
- songs.unshift({title,artist,platform,url});save();e.target.reset();$('title').focus();
-});
-render();
-</script>
+<header>
+  <div class="logo">MY <span class="red">FAV</span><br>PLAYLISTE</div>
+  <div class="subtitle">SOUND • SHADOW • SILENCE</div>
+  <div class="status">◉ MY WORLD / YOUR ACCESS</div>
+</header>
+<main>
+  <div class="intro">
+    Not everything needs to be explained.<br>
+    Some sounds say what words cannot.<br>
+    <span class="red">Welcome to my world.</span>
+  </div>
+  <h2>MY SOUNDS / TRACKS</h2>
+  <div class="grid" id="songs"></div>
+  <h2>COLLECTIONS / PLAYLISTS</h2>
+  <div class="grid" id="playlists"></div>
+</main>
+<footer>MY FAV PLAYLISTE <span class="red">///</span> NO EXPLANATIONS NEEDED</footer>
 </body>
 </html>
+<script>
+const songs = [
+"qq_aCp70jb0","cpAg-TCLYDk","U39b3uSnETQ",
+"1wYNFfgrXTI","NsAA8DaaiXg","-P4PemQEVrM",
+"CpkK9YFzmB8","zaaH1LK9FN8","F25R90GeQTM",
+"F6aeR1XJaMc","1-oSEz4jUJA","63c-8SC2CG0",
+"-jRKsiAOAA8","xLnhtTlwjak","qSCtCTCC2Sg",
+"6yDWLC0122o","mU3UT_wIR4w","79tOBHcoXFY",
+"WK0vO2b4Wjw"
+];
+
+const songGrid = document.getElementById("songs");
+
+songs.forEach((id, index) => {
+  const a = document.createElement("a");
+  a.className = "card";
+  a.href = "https://www.youtube.com/watch?v=" + id;
+  a.target = "_blank";
+  a.rel = "noopener noreferrer";
+  a.innerHTML = `
+    <div class="thumb">
+      <img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg"
+           alt="YouTube thumbnail" loading="lazy">
+      <div class="play">▶</div>
+    </div>
+    <div class="info">
+      <div class="number">TRACK ${String(index+1).padStart(2,"0")}</div>
+      <div class="name">Unknown Track</div>
+      <div class="note">LISTEN ON YOUTUBE ↗</div>
+    </div>`;
+  songGrid.appendChild(a);
+});
+</script>
+<script>
+const playlistIds = [
+"PLZWyDkninIsP0-TXvrd7Q-g3-HfHcxTsF",
+"PLMTF1RKZJLc2tEob0QTatx3Hq5bzpIje2",
+"PLMTF1RKZJLc0c0dx8LBHARZdWpXLx6eRO",
+"PLMTF1RKZJLc1BewlAMEuKpnU8Cdfm4jPg",
+"PL-avrc8Hpih4q9JWt28bvX2xEOlmq_m7u"
+];
+
+const playlistGrid = document.getElementById("playlists");
+
+playlistIds.forEach((id, index) => {
+  const a = document.createElement("a");
+  a.className = "card playlist";
+  a.href = "https://www.youtube.com/playlist?list=" + id;
+  a.target = "_blank";
+  a.rel = "noopener noreferrer";
+  a.innerHTML = `
+    <div class="playlist-icon">▤</div>
+    <div class="number">COLLECTION ${String(index+1).padStart(2,"0")}</div>
+    <div class="name">MY PLAYLIST ${index+1}</div>
+    <div class="note">OPEN ON YOUTUBE ↗</div>`;
+  playlistGrid.appendChild(a);
+});
+</script>
