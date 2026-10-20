@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080808">
+<title>MY FAV PLAYLISTE</title>
+<style>
+:root{color-scheme:dark;--red:#ff3038;--bg:#080808;--panel:#141414;--muted:#aaa}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:#f5f5f5;font-family:Arial,Helvetica,sans-serif}
+header{text-align:center;padding:42px 14px 30px;background:radial-gradient(ellipse at top,#450000 0%,#160000 44%,#080808 82%);border-bottom:1px solid #3b1111}
+h1{margin:0;color:var(--red);letter-spacing:3px;font-size:clamp(25px,5vw,40px)}
+header p{color:#aaa;letter-spacing:2px;font-size:12px;margin:12px 0 0}
+nav{display:flex;justify-content:center;gap:10px;padding:18px 12px;flex-wrap:wrap}
+nav button{background:#171717;color:#eee;border:1px solid #6d1717;padding:11px 18px;border-radius:22px;font-weight:700;cursor:pointer}
+nav button.active,nav button:hover{background:#b90000;border-color:var(--red)}
+h2{margin:18px 16px 8px;color:var(--red);font-size:20px;letter-spacing:1px}
+.note{margin:0 16px 12px;color:var(--muted);font-size:13px;line-height:1.5}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,265px),1fr));gap:16px;padding:12px 16px 30px;max-width:1250px;margin:auto}
+.card{display:block;background:linear-gradient(145deg,#181818,#0e0e0e);border:1px solid #302020;border-radius:14px;padding:10px;overflow:hidden;text-decoration:none;color:inherit;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
+.card:hover,.card:focus-visible{transform:translateY(-3px);border-color:var(--red);box-shadow:0 10px 28px #000a;outline:none}
+.thumb-wrap{position:relative;aspect-ratio:16/9;background:#000;border-radius:9px;overflow:hidden}
+.thumb{width:100%;height:100%;object-fit:cover;display:block}
+.mix-cover{width:100%;height:100%;display:flex;align-items:center;justify-content:center;text-align:center;padding:18px;background:radial-gradient(circle at 20% 20%,#8d1018 0%,#350006 38%,#080808 78%);color:#fff;font-weight:900;letter-spacing:2px;font-size:clamp(19px,3vw,27px);text-transform:uppercase;overflow-wrap:anywhere}
+.mix-cover small{display:block;font-size:10px;letter-spacing:4px;color:#ff7076;margin-bottom:12px}
+.mix-cover span{display:block;text-shadow:0 3px 20px #000}
+.play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:54px;height:38px;border-radius:12px;background:#d50000e8;display:grid;place-items:center;box-shadow:0 4px 16px #0008}
+.play:after{content:"";margin-left:4px;border-top:8px solid transparent;border-bottom:8px solid transparent;border-left:12px solid white}
+.title{margin:12px 3px 4px;font-size:14px;line-height:1.4;font-weight:700;overflow-wrap:anywhere}
+.artist{margin:0 3px 9px;color:#aaa;font-size:12px;overflow-wrap:anywhere}
+.open-label{margin:0 3px 3px;color:#ff565d;font-size:11px;letter-spacing:.5px}
+.hidden{display:none}
+footer{text-align:center;padding:28px 12px;color:#666;border-top:1px solid #222;font-size:11px;letter-spacing:2px}
+@media(max-width:420px){.grid{padding-left:10px;padding-right:10px;gap:12px}.card{padding:8px}}
+@media(prefers-reduced-motion:reduce){.card{transition:none}.card:hover{transform:none}}
+</style>
+</head>
+<body>
+<header><h1>MY FAV PLAYLISTE</h1><p>MY WORLD • MY SOUND • MY RULES</p></header>
+<nav aria-label="Music sections">
+<button class="active" type="button" data-section="tracks">THE TRACKS · 19</button>
+<button type="button" data-section="mixes">THE MIXES · 5</button>
+</nav>
+<section id="tracks"><h2>THE TRACKS</h2><p class="note">Tap any cover to open the exact song on YouTube.</p><div class="grid" id="trackGrid"></div></section>
+<section id="mixes" class="hidden"><h2>THE MIXES</h2><p class="note">Tap a playlist to open it on YouTube.</p><div class="grid" id="mixGrid"></div></section>
+<footer>PRIVATE TASTE. PUBLIC SOUND.</footer>
+<script>
+const tracks = [
+  "qq_aCp70jb0", "cpAg-TCLYDk", "U39b3uSnETQ", "1wYNFfgrXTI", "NsAA8DaaiXg",
+  "-P4PemQEVrM", "CpkK9YFzmB8", "zaaH1LK9FN8", "F25R90GeQTM", "F6aeR1XJaMc",
+  "1-oSEz4jUJA", "63c-8SC2CG0", "-jRKsiAOAA8", "xLnhtTlwjak", "qSCtCTCC2Sg",
+  "6yDWLC0122o", "mU3UT_wIR4w", "79tOBHcoXFY", "WK0vO2b4Wjw"
+];
+const playlists = [
+  "PLZWyDkninIsP0-TXvrd7Q-g3-HfHcxTsF",
+  "PLMTF1RKZJLc2tEob0QTatx3Hq5bzpIje2",
+  "PLMTF1RKZJLc0c0dx8LBHARZdWpXLx6eRO",
+  "PLMTF1RKZJLc1BewlAMEuKpnU8Cdfm4jPg",
+  "PL-avrc8Hpih4q9JWt28bvX2xEOlmq_m7u"
+];
+function makeCard({url, image, fallback, initialTitle, playlist=false}) {
+  const a=document.createElement('a'); a.className='card'; a.href=url; a.target='_blank'; a.rel='noopener noreferrer';
+  const wrap=document.createElement('div'); wrap.className='thumb-wrap';
+  const img=document.createElement('img'); img.className='thumb'; img.loading='lazy'; img.alt=playlist?'YouTube playlist cover':'YouTube video thumbnail'; img.src=image;
+  img.onerror=()=>{img.onerror=null;img.src=fallback;};
+  const play=document.createElement('span'); play.className='play'; play.setAttribute('aria-hidden','true'); wrap.append(img,play);
+  const title=document.createElement('div'); title.className='title'; title.textContent=initialTitle;
+  const artist=document.createElement('div'); artist.className='artist'; artist.textContent=playlist?'YouTube playlist':'YouTube video';
+  const label=document.createElement('div'); label.className='open-label'; label.textContent='OPEN ON YOUTUBE ↗';
+  a.append(wrap,title,artist,label);
+  return {a,title,artist};
+}
+const trackGrid=document.getElementById('trackGrid');
+tracks.forEach((id,i)=>{
+  const card=makeCard({url:'https://www.youtube.com/watch?v='+encodeURIComponent(id),image:'https://i.ytimg.com/vi/'+encodeURIComponent(id)+'/hqdefault.jpg',fallback:'https://i.ytimg.com/vi/'+encodeURIComponent(id)+'/mqdefault.jpg',initialTitle:'View on YouTube · '+String(i+1).padStart(2,'0')});
+  trackGrid.appendChild(card.a);
+  // Attempt to retrieve public title/channel metadata. If unavailable, keep the honest fallback label.
+  fetch('https://www.youtube.com/oembed?url='+encodeURIComponent('https://www.youtube.com/watch?v='+id)+'&format=json')
+    .then(r=>{if(!r.ok) throw new Error('metadata unavailable'); return r.json();})
+    .then(data=>{if(data && data.title) card.title.textContent=data.title; if(data && data.author_name) card.artist.textContent=data.author_name;})
+    .catch(()=>{});
+});
+const mixGrid=document.getElementById('mixGrid');
+const playlistInfo = [
+  {title:'PLAYLIST 01', subtitle:'MIX COLLECTION'},
+  {title:'Annaba Bekri', subtitle:'PLAYLIST'},
+  {title:'Album (Pizzini)', subtitle:'ALBUM'},
+  {title:'Mixtape (Ragnarok)', subtitle:'MIXTAPE'},
+  {title:'Flenn one shot', subtitle:'FLENN'}
+];
+playlists.forEach((id,i)=>{
+  const url='https://www.youtube.com/playlist?list='+encodeURIComponent(id);
+  const a=document.createElement('a'); a.className='card'; a.href=url; a.target='_blank'; a.rel='noopener noreferrer';
+  const wrap=document.createElement('div'); wrap.className='thumb-wrap';
+  const cover=document.createElement('div'); cover.className='mix-cover';
+  const inner=document.createElement('div');
+  const small=document.createElement('small'); small.textContent=playlistInfo[i].subtitle;
+  const titleText=document.createElement('span'); titleText.textContent=playlistInfo[i].title;
+  inner.append(small,titleText); cover.appendChild(inner); wrap.appendChild(cover);
+  const title=document.createElement('div'); title.className='title'; title.textContent=playlistInfo[i].title;
+  const artist=document.createElement('div'); artist.className='artist'; artist.textContent='YouTube playlist';
+  const label=document.createElement('div'); label.className='open-label'; label.textContent='OPEN ON YOUTUBE ↗';
+  a.append(wrap,title,artist,label); mixGrid.appendChild(a);
+});
+document.querySelectorAll('nav button').forEach(button=>button.addEventListener('click',()=>{
+  const selected=button.dataset.section;
+  document.getElementById('tracks').classList.toggle('hidden',selected!=='tracks');
+  document.getElementById('mixes').classList.toggle('hidden',selected!=='mixes');
+  document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b===button));
+}));
+</script>
+</body>
+</html>
